@@ -1,8 +1,10 @@
 // these are being called from the lib
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const inquirer = require("inquirer");
+const Manager = require("./lib/Manager.js");
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
+const Employee = require('./lib/Employee.js')
+
+const { prompt } = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
@@ -11,48 +13,162 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const teamMembers = []
-const idArr = []
+let employee = []
 
-function appMenu () {
-    function createManager() {
-        console.log("Please build your team")
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: 'managerName',
-                message:'What is your manager name?'
-            },
-            {
-                type: 'input',
-                name: 'managerEmail',
-                message:"What is your manager's Email Address?"
-            },
-            {
-                type: 'input',
-                name: 'managerId',
-                message: "What is your manager's ID Number?"
-            },
-            {
-                type: 'input',
-                name: 'managerOfficeNumber',
-                message: "What is your Manager's Office Number?"
-            }
-        ])
-        .then(answer => {
-            const manager = new Manager(answer.managerName, answer.managerEmail, answer.managerId, answer.managerOfficeNumber);
-            teamMembers.push(manager);
-            idArr.push(answer.managerId);
-            createTeam();
-        })
-    }
+const buildManager = employee => {
+    prompt([
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'Enter your Office Number:'
+        }
+    ])
+    .then(({ officeNumber }) => {
+        employee.push(new Manager(employee.name, employee.email, employee.id, employee.officeNumber))
+    })
+    .catch(err => console.log(err))
 
-    function creatTeam(){
-        
-    }
 }
 
-appMenu()
+const buildEngineer = employee => {
+    prompt([
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Enter your your employee github username'
+        }
+    ])
+    .then(({ github }) => {
+        employee.push(new Engineer(employee.name, employee.email, employee.id, employee.github))
+    })
+    .catch(err => console.log(err))
+}
+
+const buildIntern = employee => {
+    prompt([
+        {
+            type: 'input',
+            name: 'Intern',
+            message: 'What school do you attend?'
+        }
+    ])
+    .then(({ school }) => {
+        employee.push(new Intern(employee.name, employee.email, employee.id, employee.school))
+    })
+    .catch(err => console.log(err))
+}
+
+const subMenu = () => {
+    prompt({
+        type: 'list',
+        name: 'action',
+        choice: ['Create New Account', 'Login to Account'],
+        message: 'Would you like to make another account or Login to a current account? ',
+    })
+    .then(({ action }) => {
+        switch (action) {
+            case 'Create New Account':
+                mainMenu()
+                break
+            case 'Login to Account':
+                console.log(employee)
+                break
+        }
+
+    })
+    .catch(err => console.log(err))
+}
+
+const mainMenu = () => {
+    prompt([
+        {
+            type: 'list',
+            name: 'type',
+            choice: ['Manager', 'Engineer', 'Intern'],
+            message: 'Welcome, what is your employee role?'
+        },
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Enter your employee name:'
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter your employee email address:'
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Enter your employee id:'
+        }
+    ])
+    .then(employee => {
+        switch (employee.type) {
+            case 'Employee':
+                employee.push(new Employee(employee.name, employee.email, employee.id))
+                break
+            case 'Manager':
+                buildManager(employee)
+                break
+            case 'Engineer':
+                buildEngineer(employee)
+                break
+            case 'Intern':
+                buildIntern(employee)
+                break
+        }
+    })
+    .catch(err => console.log(err))
+}
+
+mainMenu()
+
+
+
+
+// const teamMembers = []
+// const idArr = []
+
+// function appMenu () {
+//     function createManager() {
+//         console.log("Please build your team")
+//         inquirer.prompt([
+//             {
+//                 type: 'input',
+//                 name: 'managerName',
+//                 message:'What is your manager name?'
+//             },
+//             {
+//                 type: 'input',
+//                 name: 'managerEmail',
+//                 message:"What is your manager's Email Address?"
+//             },
+//             {
+//                 type: 'input',
+//                 name: 'managerId',
+//                 message: "What is your manager's ID Number?"
+//             },
+//             {
+//                 type: 'input',
+//                 name: 'managerOfficeNumber',
+//                 message: "What is your Manager's Office Number?"
+//             }
+//         ])
+//         .then(answer => {
+//             const manager = new Manager(answer.managerName, answer.managerEmail, answer.managerId, answer.managerOfficeNumber);
+//             teamMembers.push(manager);
+//             idArr.push(answer.managerId);
+//             createTeam();
+//         })
+//     }
+
+//     function creatTeam(){
+        
+//     }
+// }
+
+// appMenu()
 
 
 
