@@ -25,6 +25,7 @@ const buildManager = employee => {
     ])
     .then(({ officeNumber }) => {
         employee.push(new Manager(employee.name, employee.email, employee.id, employee.officeNumber))
+        subMenu()
     })
     .catch(err => console.log(err))
 
@@ -40,6 +41,7 @@ const buildEngineer = employee => {
     ])
     .then(({ github }) => {
         employee.push(new Engineer(employee.name, employee.email, employee.id, employee.github))
+        subMenu()
     })
     .catch(err => console.log(err))
 }
@@ -54,6 +56,7 @@ const buildIntern = employee => {
     ])
     .then(({ school }) => {
         employee.push(new Intern(employee.name, employee.email, employee.id, employee.school))
+        subMenu()
     })
     .catch(err => console.log(err))
 }
@@ -107,6 +110,7 @@ const mainMenu = () => {
         switch (employee.type) {
             case 'Employee':
                 employee.push(new Employee(employee.name, employee.email, employee.id))
+                subMenu()
                 break
             case 'Manager':
                 buildManager(employee)
