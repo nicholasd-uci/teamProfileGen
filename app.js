@@ -26,7 +26,7 @@ const buildManager = employee => {
         }
     ])
     .then(({ officeNumber }) => {
-        employees.push(new Manager(employee.name, employee.email, employee.id, employee.officeNumber))
+        employees.push(new Manager(employee.name, employee.email, employee.id, officeNumber))
         subMenu()
     })
     .catch(err => console.log(err))
@@ -42,7 +42,7 @@ const buildEngineer = employee => {
         }
     ])
     .then(({ github }) => {
-        employees.push(new Engineer(employee.name, employee.email, employee.id, employee.github))
+        employees.push(new Engineer(employee.name, employee.email, employee.id, github))
         subMenu()
     })
     .catch(err => console.log(err))
@@ -57,7 +57,7 @@ const buildIntern = employee => {
         }
     ])
     .then(({ school }) => {
-        employees.push(new Intern(employee.name, employee.email, employee.id, employee.school))
+        employees.push(new Intern(employee.name, employee.email, employee.id, school))
         subMenu()
     })
     .catch(err => console.log(err))
