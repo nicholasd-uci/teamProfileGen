@@ -8,10 +8,12 @@ const { prompt } = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+const render = require("./lib/htmlRenderer.js");
+
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
+
 
 let employee = []
 
@@ -74,7 +76,8 @@ const subMenu = () => {
                 mainMenu()
                 break
             case 'Login to Account':
-                console.log(employee)
+                const html = render(employee)
+                fs.writeFileSync(path.join(__dirname, 'output', 'index.html'), html)
                 break
         }
 
@@ -86,7 +89,7 @@ const mainMenu = () => {
     prompt([
         {
             type: 'list',
-            name: 'type',
+            name: 'role',
             choice: ['Manager', 'Engineer', 'Intern'],
             message: 'Welcome, what is your employee role?'
         },
@@ -108,7 +111,7 @@ const mainMenu = () => {
     ])
     .then(employee => {
         switch (employee.type) {
-            case 'Employee':
+            case 'role':
                 employee.push(new Employee(employee.name, employee.email, employee.id))
                 subMenu()
                 break
