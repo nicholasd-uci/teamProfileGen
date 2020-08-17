@@ -67,7 +67,7 @@ const subMenu = () => {
     prompt({
         type: 'list',
         name: 'action',
-        choice: ['Create New Account', 'Login to Account'],
+        choices: ['Create New Account', 'Login to Account'],
         message: 'Would you like to make another account or Login to a current account? ',
     })
     .then(({ action }) => {
@@ -89,8 +89,8 @@ const mainMenu = () => {
     prompt([
         {
             type: 'list',
-            name: 'role',
-            choice: ['Manager', 'Engineer', 'Intern'],
+            name: 'type',
+            choices: ['Manager', 'Engineer', 'Intern'],
             message: 'Welcome, what is your employee role?'
         },
         {
@@ -109,16 +109,16 @@ const mainMenu = () => {
             message: 'Enter your employee id:'
         }
     ])
-    .then(res => {
+    .then(employee => {
         switch (employee.type) {
             case 'Manager':
-                buildManager(res)
+                buildManager(employee)
                 break
             case 'Engineer':
-                buildEngineer(res)
+                buildEngineer(employee)
                 break
             case 'Intern':
-                buildIntern(res)
+                buildIntern(employee)
                 break
         }
     })
@@ -126,70 +126,6 @@ const mainMenu = () => {
 }
 
 mainMenu()
-
-
-
-
-// const teamMembers = []
-// const idArr = []
-
-// function appMenu () {
-//     function createManager() {
-//         console.log("Please build your team")
-//         inquirer.prompt([
-//             {
-//                 type: 'input',
-//                 name: 'managerName',
-//                 message:'What is your manager name?'
-//             },
-//             {
-//                 type: 'input',
-//                 name: 'managerEmail',
-//                 message:"What is your manager's Email Address?"
-//             },
-//             {
-//                 type: 'input',
-//                 name: 'managerId',
-//                 message: "What is your manager's ID Number?"
-//             },
-//             {
-//                 type: 'input',
-//                 name: 'managerOfficeNumber',
-//                 message: "What is your Manager's Office Number?"
-//             }
-//         ])
-//         .then(answer => {
-//             const manager = new Manager(answer.managerName, answer.managerEmail, answer.managerId, answer.managerOfficeNumber);
-//             teamMembers.push(manager);
-//             idArr.push(answer.managerId);
-//             createTeam();
-//         })
-//     }
-
-//     function creatTeam(){
-        
-//     }
-// }
-
-// appMenu()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
