@@ -14,8 +14,8 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 
+let employees = []
 
-let employee = []
 
 const buildManager = employee => {
     prompt([
@@ -26,7 +26,7 @@ const buildManager = employee => {
         }
     ])
     .then(({ officeNumber }) => {
-        employee.push(new Manager(employee.name, employee.email, employee.id, employee.officeNumber))
+        employees.push(new Manager(employee.name, employee.email, employee.id, employee.officeNumber))
         subMenu()
     })
     .catch(err => console.log(err))
@@ -42,7 +42,7 @@ const buildEngineer = employee => {
         }
     ])
     .then(({ github }) => {
-        employee.push(new Engineer(employee.name, employee.email, employee.id, employee.github))
+        employees.push(new Engineer(employee.name, employee.email, employee.id, employee.github))
         subMenu()
     })
     .catch(err => console.log(err))
@@ -52,12 +52,12 @@ const buildIntern = employee => {
     prompt([
         {
             type: 'input',
-            name: 'Intern',
+            name: 'school',
             message: 'What school do you attend?'
         }
     ])
     .then(({ school }) => {
-        employee.push(new Intern(employee.name, employee.email, employee.id, employee.school))
+        employees.push(new Intern(employee.name, employee.email, employee.id, employee.school))
         subMenu()
     })
     .catch(err => console.log(err))
@@ -76,8 +76,8 @@ const subMenu = () => {
                 mainMenu()
                 break
             case 'Login to Account':
-                const html = render(employee)
-                fs.writeFileSync(path.join(__dirname, 'output', 'index.html'), html)
+                const html = render(employees)
+                fs.writeFileSync(outputPath, html)
                 break
         }
 
@@ -109,20 +109,16 @@ const mainMenu = () => {
             message: 'Enter your employee id:'
         }
     ])
-    .then(employee => {
+    .then(res => {
         switch (employee.type) {
-            case 'role':
-                employee.push(new Employee(employee.name, employee.email, employee.id))
-                subMenu()
-                break
             case 'Manager':
-                buildManager(employee)
+                buildManager(res)
                 break
             case 'Engineer':
-                buildEngineer(employee)
+                buildEngineer(res)
                 break
             case 'Intern':
-                buildIntern(employee)
+                buildIntern(res)
                 break
         }
     })
