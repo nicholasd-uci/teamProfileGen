@@ -22,11 +22,11 @@ const buildManager = employee => {
             message: 'Enter your Office Number:'
         }
     ])
-    .then(({ officeNumber }) => {
-        employees.push(new Manager(employee.name, employee.email, employee.id, officeNumber))
-        subMenu()
-    })
-    .catch(err => console.log(err))
+        .then(({ officeNumber }) => {
+            employees.push(new Manager(employee.name, employee.email, employee.id, officeNumber))
+            subMenu()
+        })
+        .catch(err => console.log(err))
 
 }
 
@@ -38,11 +38,11 @@ const buildEngineer = employee => {
             message: 'Enter your your employee github username'
         }
     ])
-    .then(({ github }) => {
-        employees.push(new Engineer(employee.name, employee.email, employee.id, github))
-        subMenu()
-    })
-    .catch(err => console.log(err))
+        .then(({ github }) => {
+            employees.push(new Engineer(employee.name, employee.email, employee.id, github))
+            subMenu()
+        })
+        .catch(err => console.log(err))
 }
 
 const buildIntern = employee => {
@@ -53,11 +53,11 @@ const buildIntern = employee => {
             message: 'What school do you attend?'
         }
     ])
-    .then(({ school }) => {
-        employees.push(new Intern(employee.name, employee.email, employee.id, school))
-        subMenu()
-    })
-    .catch(err => console.log(err))
+        .then(({ school }) => {
+            employees.push(new Intern(employee.name, employee.email, employee.id, school))
+            subMenu()
+        })
+        .catch(err => console.log(err))
 }
 
 const subMenu = () => {
@@ -67,19 +67,19 @@ const subMenu = () => {
         choices: ['Create New Account', 'Login to Account'],
         message: 'Would you like to make another account or Login to a current account? ',
     })
-    .then(({ action }) => {
-        switch (action) {
-            case 'Create New Account':
-                mainMenu()
-                break
-            case 'Login to Account':
-                const html = render(employees)
-                fs.writeFileSync(outputPath, html)
-                break
-        }
+        .then(({ action }) => {
+            switch (action) {
+                case 'Create New Account':
+                    mainMenu()
+                    break
+                case 'Login to Account':
+                    const html = render(employees)
+                    fs.writeFileSync(outputPath, html)
+                    break
+            }
 
-    })
-    .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
 }
 
 const mainMenu = () => {
@@ -106,20 +106,20 @@ const mainMenu = () => {
             message: 'Enter your employee id:'
         }
     ])
-    .then(employee => {
-        switch (employee.type) {
-            case 'Manager':
-                buildManager(employee)
-                break
-            case 'Engineer':
-                buildEngineer(employee)
-                break
-            case 'Intern':
-                buildIntern(employee)
-                break
-        }
-    })
-    .catch(err => console.log(err))
+        .then(employee => {
+            switch (employee.type) {
+                case 'Manager':
+                    buildManager(employee)
+                    break
+                case 'Engineer':
+                    buildEngineer(employee)
+                    break
+                case 'Intern':
+                    buildIntern(employee)
+                    break
+            }
+        })
+        .catch(err => console.log(err))
 }
 
 mainMenu()
