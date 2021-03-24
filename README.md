@@ -4,7 +4,12 @@
 
 Team Profile Generator is a simple to use application that will help any business generate a creative profile for each Employee. In this assignment, we also tested every route prior to releasing this application. 
 
-##
+## Source Reference 
+
+- [npm](https://www.npmjs.com/)
+- [npm express](https://www.npmjs.com/package/express)
+- [express js](https://expressjs.com/)
+- [nodemon.io](https://nodemon.io/)
 
 ## Submission Links
 
