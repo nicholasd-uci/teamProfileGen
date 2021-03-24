@@ -4,7 +4,10 @@
 
 Team Profile Generator is a simple to use application that will help any business generate a creative profile for each Employee. In this assignment, we also tested every route prior to releasing this application. 
 
+
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+*Start: This section was provided by Trilogy Education Services*
+
 ## Instructions
 
 You will build a software engineering team generator command line application. The application will prompt the user for information about the team manager and then information about the team members. The user can input any number of team members, and they may be a mix of engineers and interns. This assignment must also pass all unit tests. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
@@ -137,8 +140,10 @@ The project must generate a `team.html` page in the `output` directory, that dis
   * ID
 
   * Role-specific property (School, link to GitHub profile, or office number)
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
 
+
+© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+*END: This section was provided by Trilogy Education Services*
 
 ## Source Reference 
 
