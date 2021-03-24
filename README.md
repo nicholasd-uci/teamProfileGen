@@ -6,7 +6,7 @@ Team Profile Generator is a simple to use application that will help any busines
 
 ##
 
-## LINKS
+## Submission Links
 
 - [GitHub Repo Link](https://github.com/nicholasd-uci/teamProfileGen)
 - [Nicholas Dallas's GitHub](https://github.com/nicholasd-uci)
