@@ -4,9 +4,10 @@
 
 Team Profile Generator is a simple to use application that will help any business generate a creative profile for each Employee. In this assignment, we also tested every route prior to releasing this application. 
 
+*Start: This section was provided by Trilogy Education Services*
 
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
-*Start: This section was provided by Trilogy Education Services*
+
 
 ## Instructions
 
@@ -142,7 +143,8 @@ The project must generate a `team.html` page in the `output` directory, that dis
   * Role-specific property (School, link to GitHub profile, or office number)
 
 
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.  
+
 *END: This section was provided by Trilogy Education Services*
 
 ## Source Reference 
